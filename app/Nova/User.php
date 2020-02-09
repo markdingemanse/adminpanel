@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Devpartners\AuditableLog\AuditableLog;
 
 class User extends Resource
 {
@@ -60,6 +61,8 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            AuditableLog::make()->withToolbar()->searchable(),
         ];
     }
 
@@ -104,6 +107,8 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            new Actions\RefreshFpTitansDatabase,
+        ];
     }
 }

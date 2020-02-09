@@ -2,9 +2,14 @@
 
 namespace App\Nova;
 
+use Chaseconey\ExternalImage\ExternalImage;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Devpartners\AuditableLog\AuditableLog;
 
 class Heroine extends Resource
 {
@@ -29,7 +34,18 @@ class Heroine extends Resource
      */
     public static $search = [
         'id',
+        'name',
     ];
+
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'FPtitans';
+
+
+    public static $perPageOptions = [50, 100, 150];
 
     /**
      * Get the fields displayed by the resource.
@@ -41,6 +57,13 @@ class Heroine extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('name')->sortable(),
+            ExternalImage::make('link_to_picture'),
+            Text::make('discription')->sortable(),
+            Text::make('attack_type')->sortable(),
+            HasMany::make('loggings'),
+
+            AuditableLog::make(),
         ];
     }
 

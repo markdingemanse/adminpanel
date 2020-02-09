@@ -5,6 +5,7 @@ use Carbon\Carbon;
 
 use App\Models\Heroine;
 use App\Models\Logging;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $admin = User::create([
+            'name' => 'admin',
+            "email" => "dingemansemark@gmail.com",
+            "email_verified_at" => null,
+            "password" => "$2y$10$4vzk/ZarMa3w37V9VO3U/erMd8zrFFb90NN/RDvyaMWUzhGIb9l8e",
+            "remember_token" => null,
+            "created_at" => "2020-02-09 10:54:25",
+            "updated_at" => "2020-02-09 10:54:25",
+        ]);
+
         $heroine1 = Heroine::create([
             'name' => 'madoka kaito',
             'link_to_picture' => 'https://cdn.faptitans.com/s1/__3dc1/images/hero-all/tithero-05/x1/tithero-05-1.jpg',

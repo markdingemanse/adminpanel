@@ -28,7 +28,7 @@ class LoggingAndHeroinesTest extends TestCase
         $heroineFromRelation = $loggingFromDb->first()->heroine;
 
         $heroinesFromDb = Heroine::all();
-        $loggingFromRelation = $heroinesFromDb->first()->logs;
+        $loggingFromRelation = $heroinesFromDb->first()->loggings;
 
         $this->assertTrue($loggingFromDb->isNotEmpty());
         $this->assertTrue($heroinesFromDb->isNotEmpty());

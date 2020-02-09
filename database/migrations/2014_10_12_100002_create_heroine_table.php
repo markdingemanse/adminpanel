@@ -19,6 +19,7 @@ class CreateHeroineTable extends Migration
             $table->string('link_to_picture')->nullable();
             $table->string('discription')->nullable();
             $table->string('attack_type');
+            $table->softDeletes();
         });
     }
 

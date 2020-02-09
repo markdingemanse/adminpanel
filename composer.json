@@ -15,10 +15,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "chaseconey/nova-external-image": "^0.1.0",
+        "devpartners/auditable-log": "^1.0",
         "fideloper/proxy": "^4.0",
+        "kabbouchi/nova-logs-tool": "^0.1.4",
         "laravel/framework": "^6.2",
         "laravel/nova": "^2.10",
         "laravel/tinker": "^2.0",
+        "owen-it/laravel-auditing": "^9.3",
         "symfony/translation-contracts": "^1.1.6"
     },
     "require-dev": {

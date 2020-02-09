@@ -3,8 +3,13 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Devpartners\AuditableLog\AuditableLog;
 
 class Logging extends Resource
 {
@@ -29,7 +34,17 @@ class Logging extends Resource
      */
     public static $search = [
         'id',
+        'promoted',
+        'new_level',
+        'promotion_received',
     ];
+
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'FPtitans';
 
     /**
      * Get the fields displayed by the resource.
@@ -41,6 +56,12 @@ class Logging extends Resource
     {
         return [
             ID::make()->sortable(),
+            BelongsTo::make('heroine'),
+            Boolean::make('promoted'),
+            Number::make('new_level'),
+            DateTime::make('promotion_received'),
+
+            AuditableLog::make(),
         ];
     }
 

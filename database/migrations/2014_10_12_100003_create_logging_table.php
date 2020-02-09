@@ -19,6 +19,7 @@ class CreateLoggingTable extends Migration
             $table->boolean('promoted');
             $table->integer('new_level');
             $table->dateTime('promotion_received');
+            $table->softDeletes();
 
             $table->foreign('heroine_id')->references('id')->on('heroines');
         });

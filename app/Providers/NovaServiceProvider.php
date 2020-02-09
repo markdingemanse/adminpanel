@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Cards\Help;
+use App\Nova\Metrics\TotalPromotes;
 use Laravel\Nova\Nova;
+use Laravel\Nova\Cards\Help;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use KABBOUCHI\LogsTool\LogsTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -56,7 +58,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new TotalPromotes,
+            // new Help,
         ];
     }
 
@@ -77,7 +80,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new LogsTool,
+        ];
     }
 
     /**

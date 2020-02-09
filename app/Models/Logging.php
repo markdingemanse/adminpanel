@@ -5,9 +5,14 @@ namespace App\Models;
 use App\Models\Heroine;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Logging extends Model
+class Logging extends Model implements AuditableContract
 {
+    use SoftDeletes, Auditable;
+
     protected $connection = 'faptitan';
 
     /**
@@ -16,6 +21,8 @@ class Logging extends Model
     protected $table = 'logging';
 
     public $timestamps = false;
+
+    public $dates = ['promotion_received'];
 
     /**
      * {@inheritdoc}
